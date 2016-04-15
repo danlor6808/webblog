@@ -1,0 +1,40 @@
+﻿@model webblog.Models.comment
+
+<h4>Are you sure you want to delete this comment?</h4>
+<div>
+    <hr class="defaulthr" />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.DisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
+            <input type="button" value="Cancel" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "blogposts", new { slug = Model.Post.Slug })'">
+        </div>
+    }
+</div>

@@ -1,0 +1,85 @@
+h1, h4 {
+	color: white;
+	text-align: center;
+}
+
+nav {
+	height:100px;
+	width: 100%;
+	background-color:#003366;
+	margin: -10px 0 0 -10px;
+	border: 1px solid #0066cc;
+}
+
+nav ul li{
+	display:inline;
+}
+
+nav a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+nav a:hover {
+	color: #99ccff;
+}
+
+header {
+	width: 400px;
+	margin: auto;
+}
+
+section {
+	width: 40%;
+	min-height:  300px;
+	margin: auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.col1 {
+	width: 50%;
+	float:left;
+}
+
+.col2 {
+	width:40%;
+	float:right;
+}
+
+.clear {
+	clear:both;
+}
+
+#wrapper {
+	margin: auto;
+	width: 100%;
+}
+
+#section2, #section3, #section4 {
+	border-top: 1px solid #bbbbbb;
+}
+
+section ul {
+	margin: 10px 0 10px -40px;
+	display: block;
+}
+section li {
+	margin: 5px 0 5px 0;
+	display: block;
+}
+
+textarea {
+	height:200px;
+	width:95%;
+	resize: none;
+}
+
+footer {
+	height:100px;
+	background-color:#003366;	
+}
+
+input[type="text"], input[type="number"] {
+	width: 40%;
+}

@@ -1,0 +1,47 @@
+﻿@model webblog.Models.comment
+
+<h2>Edit Your Comment</h2>
+
+@using (Html.BeginForm())
+{
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+        <hr class="defaulthr" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", id = "Ed", rows = "5" } })
+                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <input type="button" value="Cancel" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "blogposts", new { slug = Model.Post.Slug })';return false;">
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+
+</div>
+
+@section scripts {
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            tinyMCE.init({
+                remove_linebreaks : false
+            });
+
+            $('#Ed').tinymce({});
+        });
+    </script>
+}
