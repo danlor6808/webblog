@@ -12,7 +12,7 @@ namespace webblog.Controllers
 {
     [RequireHttps]
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : ApplicationBaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -236,10 +236,6 @@ namespace webblog.Controllers
                 if (user != null)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
-                if (UserManager.FindById(User.Identity.GetUserId()).ChangePassword)
-                {
-                    UserManager.FindById(User.Identity.GetUserId()).ChangePassword = false;
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }

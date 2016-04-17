@@ -9,12 +9,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using webblog.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace webblog.Controllers
 {
     [RequireHttps]
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : ApplicationBaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -67,7 +68,7 @@ namespace webblog.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl, string Id)
         {
             if (!ModelState.IsValid)
             {
@@ -77,21 +78,12 @@ namespace webblog.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    if (UserManager.FindById(User.Identity.GetUserId()).ChangePassword)
-                    {
-                        //force password change
-                        return RedirectToAction("ChangePassword", "Manage");
-                    }
-                    else
-                    {
                         //return RedirectToLocal(returnUrl);
-                        return RedirectToAction(returnUrl);
-                    }
+                        return RedirectToAction("Index", "blogposts");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

@@ -15,7 +15,7 @@ using System.IO;
 namespace webblog.Controllers
 {
     [RequireHttps]
-    public class blogpostsController : Controller
+    public class blogpostsController : ApplicationBaseController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -28,10 +28,19 @@ namespace webblog.Controllers
             ViewBag.query = query;
             if(!string.IsNullOrWhiteSpace(query))
             {
-                qposts = qposts.Where(p => p.Title.Contains(query) || p.Body.Contains(query) ||
+                qposts = qposts.Where(p => p.Title.Contains(query) || p.Body.Contains(query) || p.Category.Contains(query) ||
                 p.Comments.Any(c => c.Body.Contains(query) || c.Author.DisplayName.Contains(query)));
             }
             var posts = qposts.ToList().OrderByDescending(x => x.Created).ToPagedList(pageNumber,pageSize);
+
+            //getting a list of category/tag names from all of the blog posts
+            List<string> categoryList = new List<string>();
+            foreach (var i in db.Posts)
+            {
+                    categoryList.Add(i.Category);
+            }
+            //[Distinct] removes duplicate entires in the list
+            ViewBag.categorylist = categoryList.Distinct();
             return View(posts);
         }
 
@@ -70,7 +79,7 @@ namespace webblog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,MediaURL,Published")] blogpost blogpost, HttpPostedFileBase image)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,MediaURL,Published,Category")] blogpost blogpost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -130,7 +139,7 @@ namespace webblog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,MediaURL,Published")] blogpost blogpost, HttpPostedFileBase image)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,MediaURL,Published,Category")] blogpost blogpost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -140,7 +149,7 @@ namespace webblog.Controllers
                 db.Entry(blogpost).Property("Title").IsModified = true;
                 db.Entry(blogpost).Property("MediaURL").IsModified = true;
                 db.Entry(blogpost).Property("Updated").IsModified = true;
-                //db.Entry(blogpost).State = EntityState.Modified;
+                db.Entry(blogpost).Property("Category").IsModified = true;
                 db.Entry(blogpost).Property("Published").IsModified = true;
 
                 //restricting valid file formats to images only

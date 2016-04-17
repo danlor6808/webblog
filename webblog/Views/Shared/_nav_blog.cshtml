@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+
     <!--///////////////// Navigation Section ////////////////////-->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -24,14 +25,17 @@
                             <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
                             @Html.AntiForgeryToken()
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@User.Identity.GetUserName()</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Manage Account", "Index", "Manage")</li>
+                                    <li class="text-center">Hi @ViewData["DisplayName"]!</li>
+                                    <li class="divider"></li>
+                                    <li>@Html.ActionLink("Control Panel", "Index", "Manage")</li>
                                     <li>@Html.ActionLink("Manage All Posts", "Admin", "blogposts")</li>
                                     <li>@Html.ActionLink("Create New Post", "Create", "blogposts")</li>
+                                    <li class="divider"></li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                                 </ul>
                             </li>
-                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                         </ul>
                     }
                 }
@@ -45,12 +49,15 @@
                             <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
                             @Html.AntiForgeryToken()
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@User.Identity.GetUserName()</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
                                 <ul class="dropdown-menu">
+                                    <li class="text-center">Hi @ViewData["DisplayName"]!</li>
+                                    <li class="divider"></li>
                                     <li>@Html.ActionLink("Control Panel", "Index", "Manage")</li>
+                                    <li class="divider"></li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                                 </ul>
                             </li>
-                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                         </ul>
                     }
                 }
@@ -59,7 +66,13 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
-                            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Register Account", "Register", "Account")</li>
+                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                </ul>
+                            </li>
                         </ul>
                        }
 

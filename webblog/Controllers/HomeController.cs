@@ -10,7 +10,7 @@ using webblog.Models;
 namespace webblog.Controllers
 {
     [RequireHttps]
-    public class HomeController : Controller
+    public class HomeController : ApplicationBaseController
     {
         public ActionResult Index()
         {
