@@ -18,63 +18,79 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                    {
                         <ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>
+                                <form action="@Url.Action("Index", "blogposts")" id="popupSearch" style="display:none">
+                                    <input type="search" name="query" value="">
+                                    <input type="submit" style="display:none">
+                                </form>
+                            </li>
                             <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
-                            @Html.AntiForgeryToken()
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @ViewData["DisplayName"]</a>
                                 <ul class="dropdown-menu">
-                                    <li class="text-center">Hi @ViewData["DisplayName"]!</li>
+                                    <li class="text-center">@Html.ActionLink("Control Panel", "Index", "Manage")</li>
+                                    <li class="text-center">@Html.ActionLink("Manage All Posts", "Admin", "blogposts")</li>
+                                    <li class="text-center">@Html.ActionLink("Create New Post", "Create", "blogposts")</li>
                                     <li class="divider"></li>
-                                    <li>@Html.ActionLink("Control Panel", "Index", "Manage")</li>
-                                    <li>@Html.ActionLink("Manage All Posts", "Admin", "blogposts")</li>
-                                    <li>@Html.ActionLink("Create New Post", "Create", "blogposts")</li>
-                                    <li class="divider"></li>
-                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    <li class="text-center">
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                        {
+                                        @Html.AntiForgeryToken()
+                                        <a href="javascript:document.getElementById('logoutForm').submit()" class="link sign-out"><i class="fa fa-sign-out"></i> Sign-out</a>
+                                        }
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
-                    }
+
                 }
                 else if (Request.IsAuthenticated)
                 {
-
-                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                    {
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
-                            @Html.AntiForgeryToken()
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li class="text-center">Hi @ViewData["DisplayName"]!</li>
-                                    <li class="divider"></li>
-                                    <li>@Html.ActionLink("Control Panel", "Index", "Manage")</li>
-                                    <li class="divider"></li>
-                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    }
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form action="@Url.Action("Index", "blogposts")" id="popupSearch" style="display:none">
+                                <input type="search" name="query" value="">
+                                <input type="submit" style="display:none">
+                            </form>
+                        </li>
+                        <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @ViewData["DisplayName"]</a>
+                            <ul class="dropdown-menu">
+                                <li class="text-center">@Html.ActionLink("Control Panel", "Index", "Manage")</li>
+                                <li class="divider"></li>
+                                <li class="text-center">
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a href="javascript:document.getElementById('logoutForm').submit()" class="link sign-out"><i class="fa fa-sign-out"></i> Sign-out</a>
+                                    }
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 }
                 else
                 {
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Register Account", "Register", "Account")</li>
-                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                                </ul>
-                            </li>
-                        </ul>
-                       }
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form action="@Url.Action("Index", "blogposts")" id="popupSearch" style="display:none">
+                                <input type="search" name="query" value="">
+                                <input type="submit" style="display:none">
+                            </form>
+                        </li>
+                        <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Menu</a>
+                            <ul class="dropdown-menu">
+                                <li class="text-center">@Html.ActionLink("Register", "Register", "Account")</li>
+                                <li class="divider"></li>
+                                <li class="text-center"><a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i> Sign-in</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                }
 
 </div>
             <!-- /.navbar-collapse -->

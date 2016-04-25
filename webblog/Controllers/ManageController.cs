@@ -216,6 +216,7 @@ namespace webblog.Controllers
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
+            ViewBag.user = UserManager.FindById(User.Identity.GetUserId()).ChangePassword;
             return View();
         }
 
@@ -236,6 +237,11 @@ namespace webblog.Controllers
                 if (user != null)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                if (user.ChangePassword)
+                {
+                    user.ChangePassword = false;
+                    UserManager.Update(user);
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }

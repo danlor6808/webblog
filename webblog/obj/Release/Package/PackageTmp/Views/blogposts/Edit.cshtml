@@ -1,91 +1,89 @@
 ﻿@model webblog.Models.blogpost
 
-<h2>Edit</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 col-md-offset-3 well">
+            <h4 class="text-center">Edit</h4>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>blogpost</h4>
-        <hr class="defaulthr"/>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+            @using (Html.BeginForm("Edit", "blogposts", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-horizontal">
+                    <hr class="defaulthr" />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", id = "Ed", rows = "5" } })
-                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
-                @{
-                    if (String.IsNullOrEmpty(Model.MediaURL))
-                    {
-
-                    }
-                    else
-                    {
-                        <br />
-                        <div>
-                            <a href="@Model.MediaURL"><img src="@Model.MediaURL" style="width:30%" /></a>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                         </div>
-                    }
-                }
-            </div>
-        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Published, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Published)
-                    @Html.ValidationMessageFor(model => model.Published, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", id = "Ed", rows = "5" } })
+                            @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.MediaURL)
+                            <input name="image" type="file" class="form-control" id="fileUpload" />
+                            @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+
+                            @if (Model.MediaURL != null)
+                            {
+                                <br />
+                                <div id="fileDisplay">
+                                    <a href="@Url.Content(Model.MediaURL)"><img src="@Url.Content(Model.MediaURL)" class="img-responsive" style="width:100%" /></a>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Published, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.Published)
+                                @Html.ValidationMessageFor(model => model.Published, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <a href="@Url.Action("Index", "blogposts")" class="btn btn-primary">Back</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary btn-x1" />
+            }
             </div>
         </div>
     </div>
-}
+            @section scripts {
+                <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+                <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#Ed').tinymce({ forced_root_block: "" });
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section scripts {
-    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
-    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('#Ed').tinymce({});
-
-        });
-    </script>
-}
+                    });
+                </script>
+            }

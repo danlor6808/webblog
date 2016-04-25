@@ -63,6 +63,15 @@ namespace webblog.Controllers
             {
                 return HttpNotFound();
             }
+
+            //getting a list of category/tag names from all of the blog posts
+            List<string> categoryList = new List<string>();
+            foreach (var i in db.Posts)
+            {
+                categoryList.Add(i.Category);
+            }
+            //[Distinct] removes duplicate entires in the list
+            ViewBag.categorylist = categoryList.Distinct();
             return View(blogpost);
         }
 
@@ -279,6 +288,10 @@ namespace webblog.Controllers
             if (comment == null)
             {
                 return HttpNotFound();
+            }
+            if (User.Identity.GetUserId() != comment.AuthorId)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             return View(comment);
         }

@@ -5,16 +5,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <!-- Blog Post Content Column -->
                 <div class="col-lg-12 blogpost well">
-                    <h2>@Model.Title</h2>
+                    <h2>@Model.Title
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            @: <small style="font-size: 40%">[ <a href="@Url.Action("Edit", new { Model.Id })">Edit</a> ]</small>
+                                @: <small style="font-size: 40%">[ <a href="@Url.Action("Delete", new { Model.Id })">Delete</a> ]</small>
+                            }
+                    </h2>
+
                     <h5>
                         <i class="fa fa-pencil"></i> Posted by Danny Lorn 
                         <span style="display:inline-block; width: 1em;"></span>
                         <i class="fa fa-clock-o"></i> @Model.Created.ToString("D")
                         <span style="display:inline-block; width: 1em;"></span>
-                        <i class="fa fa-comments"></i> @Model.Comments.Count Comments
+                        <i class="fa fa-comments"></i> <a href="#comments">@Model.Comments.Count Comments</a>
                     </h5> 
 
                     <hr class="defaulthr" />
@@ -25,21 +32,14 @@
                         <hr class="defaulthr">
                     }
 
-                    <p class="lead">@Html.Raw(@Model.Body)</p>
+                    <p>@Html.Raw(@Model.Body)</p>
                     <hr class="defaulthr" />
 
                     @Html.ActionLink("Back to List", "Index")
                     
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <br />
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-                    }
-
-
                 </div>
 
-                <div class="col-lg-12 blogpost" style="padding:0">
+                <div class="col-lg-12 blogpost" id="comments" style="padding:0">
                     <!-- Blog Comments -->
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -71,15 +71,17 @@
                         <div class="media">
                             <div class="commentIcon pull-left text-center">
                                 <a href="#">
-                                    <img class="media-object" src="http://placehold.it/100x100" alt="">
+                                    <img class="media-object" src="~/img/blog/100x100.png" alt="">
                                 </a>
+                                
                                 @if (Request.IsAuthenticated && User.Identity.GetUserId() == comment.AuthorId)
                                 {
-                                    <a href="@Url.Action("EditComment", "blogposts", new { id = comment.Id, slug = Model.Slug })">Edit</a> 
+
+                                   @: <small>[ <a href="@Url.Action("EditComment", "blogposts", new { id = comment.Id, slug = Model.Slug })">Edit</a> ] </small>
                                 }
                                 @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
                                 {
-                                    <a href="@Url.Action("DeleteComment", "blogposts", new { id = comment.Id, slug = Model.Slug })">Delete</a>
+                                   @:<small>[ <a href="@Url.Action("DeleteComment", "blogposts", new { id = comment.Id, slug = Model.Slug })">Delete</a> ] </small>
                                 }
                             </div>
                             <div class="media-body">
@@ -102,7 +104,7 @@
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4 hidden-xs hidden-sm">
+            <div class="col-md-3 hidden-xs hidden-sm">
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
@@ -110,7 +112,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control" name="query" value="@ViewBag.query" placeholder="Search ...">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
+                                <button class="btn btn-primary" type="submit" style="color: #222">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                             </span>
@@ -119,44 +121,22 @@
                     <!-- /.input-group -->
                 </div>
 
-                <!-- Blog Categories Well -->
+                <!-- Tags Categories Well -->
                 <div class="well">
-                    <h4>Blog Categories</h4>
+                    <h4><i class="fa fa-tags"></i> Tags</h4>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">Category Name</a>
-                                </li>
-                                <li>
-                                    <a href="#">Category Name</a>
-                                </li>
-                                <li>
-                                    <a href="#">Category Name</a>
-                                </li>
-                                <li>
-                                    <a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="#">Category Name</a>
-                                </li>
-                                <li>
-                                    <a href="#">Category Name</a>
-                                </li>
-                                <li>
-                                    <a href="#">Category Name</a>
-                                </li>
-                                <li>
-                                    <a href="#">Category Name</a>
-                                </li>
+                                @{
+                                    foreach (var category in ViewBag.categorylist)
+                                    {
+                                        <li><a href="@Url.Action("Index", "blogposts", new { query = category })">@category</a></li>
+                                    }
+                                }
+
                             </ul>
                         </div>
                     </div>
-                    <!-- /.row -->
                 </div>
             </div>
         </div>

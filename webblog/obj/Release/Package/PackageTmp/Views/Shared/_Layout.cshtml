@@ -11,6 +11,8 @@
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css" type="text/css">
 
+    <!-- Paging Style -->
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="~/css/animate.min.css" type="text/css">
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
@@ -24,6 +26,20 @@
     </header>
         @{Html.RenderPartial("_nav_blog");}
         @RenderBody()
+
+    <div class="col-lg-8 col-lg-offset-2 text-center" id="footer">
+        <hr class="defaulthr" />
+        <img src="~/img/logo.png" class="img-responsive centered rotate" style="width:10%"/>
+        <small>&copy;2016</small>
+        @*<ul class="list-inline">
+            <li><i class="fa fa-2x fa-facebook-square"></i></li>
+            <li><i class="fa fa-2x fa-linkedin-square"></i></li>
+            <li><i class="fa fa-2x fa-behance-square"></i></li>
+            <li><i class="fa fa-2x fa-github-square"></i></li>
+        </ul>*@
+       
+
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -8,6 +8,7 @@ namespace webblog.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 
     public class ExternalLoginListViewModel

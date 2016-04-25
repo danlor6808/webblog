@@ -82,8 +82,16 @@ namespace webblog.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var Grant = SignInManager.AuthenticationManager.AuthenticationResponseGrant;
+                    string UserId = Grant.Identity.GetUserId();
+                    if (UserManager.FindById(UserId).ChangePassword)
+                    {
+                        return RedirectToAction("ChangePassword", "Manage");
+                    } else
+                    {
                         //return RedirectToLocal(returnUrl);
                         return RedirectToAction("Index", "blogposts");
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -399,7 +407,7 @@ namespace webblog.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DisplayName = model.User.DisplayName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

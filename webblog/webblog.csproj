@@ -291,6 +291,11 @@
     <Content Include="img\animated\waveboat.png" />
     <Content Include="img\backdrop.jpg" />
     <Content Include="img\bg.png" />
+    <Content Include="img\blog\1 - Xht20fA.png" />
+    <Content Include="img\blog\100x100.png" />
+    <Content Include="img\blog\2 - 0VC5qIE.jpg" />
+    <Content Include="img\blog\4 - 0WDkecy.png" />
+    <Content Include="img\blog\classroom.jpg" />
     <Content Include="img\face.jpg" />
     <Content Include="img\geo-pattern.png" />
     <Content Include="img\header.jpg" />
@@ -642,7 +647,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="img\blog\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
