@@ -78,6 +78,7 @@
     var fileInput = document.getElementById('fileUpload');
     var fileDisplayArea = document.getElementById('fileDisplay');
 
+    //File Reader Function for displaying images
     fileInput.addEventListener('change', function (e) {
         var file = fileInput.files[0];
         var imageType = /image.*/;

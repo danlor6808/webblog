@@ -374,9 +374,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Properties\PublishProfiles\dlorn-blog %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\dlorn-blog.pubxml" />
-    <None Include="Properties\PublishProfiles\dlorn.pubxml" />
+    <None Include="Properties\PublishProfiles\dhlorn - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\dhlorn - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
