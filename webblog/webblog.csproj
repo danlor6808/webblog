@@ -309,6 +309,7 @@
     <Content Include="img\portfolio\4.jpg" />
     <Content Include="img\portfolio\5.jpg" />
     <Content Include="img\portfolio\6.jpg" />
+    <Content Include="img\portfolio\7.jpg" />
     <Content Include="img\portfolio\carousel\slide-1.jpg" />
     <Content Include="img\portfolio\carousel\slide-1b.jpg" />
     <Content Include="img\portfolio\carousel\slide-2.jpg" />
@@ -592,7 +593,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -615,7 +615,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Abc.cshtml" />
     <Content Include="Views\blogposts\Create.cshtml" />
     <Content Include="Views\blogposts\Delete.cshtml" />
     <Content Include="Views\blogposts\Details.cshtml" />

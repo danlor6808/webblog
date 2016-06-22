@@ -659,8 +659,8 @@ svg path {
     fill:transparent;
     stroke: #e6e6e6;
     stroke-width: 3;
-    stroke-dasharray: 2000px;
-    stroke-dashoffset: 2000px;
+    stroke-dasharray: 2300px;
+    stroke-dashoffset: 2300px;
     animation-name: draw;
     animation-duration: 8s;
     animation-fill-mode: forwards; // Stay on the last frame

@@ -25,6 +25,18 @@
                                     <input type="submit" style="display:none">
                                 </form>
                             </li>
+                            <li>
+                                <a class="page-scroll" href="@Url.Action("Index","Home")#about">About</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="@Url.Action("Index","Home")#resume">Resume</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="@Url.Action("Index","Home")#portfolio">Portfolio</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="@Url.Action("Index","Home")#contact">Contact</a>
+                            </li>
                             <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @ViewData["DisplayName"]</a>
@@ -43,7 +55,6 @@
                                 </ul>
                             </li>
                         </ul>
-
                 }
                 else if (Request.IsAuthenticated)
                 {
@@ -79,6 +90,18 @@
                                 <input type="search" name="query" value="">
                                 <input type="submit" style="display:none">
                             </form>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="@Url.Action("Index","Home")#about">About</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="@Url.Action("Index","Home")#resume">Resume</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="@Url.Action("Index","Home")#portfolio">Portfolio</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="@Url.Action("Index","Home")#contact">Contact</a>
                         </li>
                         <li>@Html.ActionLink("Blog", "Index", "blogposts")</li>
                         <li class="dropdown">
