@@ -293,6 +293,8 @@
     <Content Include="img\bg.png" />
     <Content Include="img\blog\1 - Xht20fA.png" />
     <Content Include="img\blog\100x100.png" />
+    <Content Include="img\blog\12891725_805949282869265_8109009308354949760_o.jpg" />
+    <Content Include="img\blog\13458563_847162035414656_3071149381599415029_o.jpg" />
     <Content Include="img\blog\2 - 0VC5qIE.jpg" />
     <Content Include="img\blog\4 - 0WDkecy.png" />
     <Content Include="img\blog\classroom.jpg" />
@@ -375,8 +377,10 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="assets\Danny Lorn.pdf" />
     <None Include="Properties\PublishProfiles\dhlorn - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dhlorn - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\dhlorn.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

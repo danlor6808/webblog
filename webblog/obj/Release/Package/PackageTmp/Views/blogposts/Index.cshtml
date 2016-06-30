@@ -36,7 +36,7 @@
                                 <hr class="defaulthr">
                             }
                             
-                        <p>@Html.Raw((post.Body.Length > 200 ? post.Body.Substring(0, 200) : post.Body))</p>
+                        <p>@Html.Raw((post.Body.Length > 300 ? post.Body.Substring(0, 300) + "..." : post.Body))</p>
                         <input type="button" value="Read More" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "blogposts", new { slug = post.Slug })';return false;">
                         <hr class="defaulthr">
                     </div>   
