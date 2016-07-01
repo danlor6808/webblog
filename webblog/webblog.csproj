@@ -312,6 +312,12 @@
     <Content Include="img\portfolio\5.jpg" />
     <Content Include="img\portfolio\6.jpg" />
     <Content Include="img\portfolio\7.jpg" />
+    <Content Include="img\portfolio\bugtracks-fullview.jpg" />
+    <Content Include="img\portfolio\carousel\bugtracks-dashboard.jpg" />
+    <Content Include="img\portfolio\carousel\bugtracks-profile.jpg" />
+    <Content Include="img\portfolio\carousel\bugtracks-projects.jpg" />
+    <Content Include="img\portfolio\carousel\bugtracks-tickets.jpg" />
+    <Content Include="img\portfolio\carousel\bugtracks-userlist.jpg" />
     <Content Include="img\portfolio\carousel\slide-1.jpg" />
     <Content Include="img\portfolio\carousel\slide-1b.jpg" />
     <Content Include="img\portfolio\carousel\slide-2.jpg" />
