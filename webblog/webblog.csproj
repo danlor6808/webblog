@@ -312,7 +312,13 @@
     <Content Include="img\portfolio\5.jpg" />
     <Content Include="img\portfolio\6.jpg" />
     <Content Include="img\portfolio\7.jpg" />
+    <Content Include="img\portfolio\8.jpg" />
+    <Content Include="img\portfolio\budget-account.jpg" />
+    <Content Include="img\portfolio\budget-fullview.jpg" />
+    <Content Include="img\portfolio\budget-trans.jpg" />
     <Content Include="img\portfolio\bugtracks-fullview.jpg" />
+    <Content Include="img\portfolio\carousel\budget-category.jpg" />
+    <Content Include="img\portfolio\carousel\budget-details.jpg" />
     <Content Include="img\portfolio\carousel\bugtracks-dashboard.jpg" />
     <Content Include="img\portfolio\carousel\bugtracks-profile.jpg" />
     <Content Include="img\portfolio\carousel\bugtracks-projects.jpg" />
@@ -384,6 +390,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="assets\Danny Lorn.pdf" />
+    <None Include="Properties\PublishProfiles\dhlorn %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\dhlorn - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dhlorn - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dhlorn.pubxml" />
